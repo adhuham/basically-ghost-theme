@@ -1,0 +1,29 @@
+{{!< default}}
+
+{{> header}} 
+
+<main class="container mx-auto">
+
+  {{#tag}}
+  <header class="font-inter sm:pb-5 pb-5 mb-10 sm:mb-20 border-b border-gray-100">
+      <h1 class="text-lg sm:text-xl font-semibold mb-2 text-gray-600">Tag: {{name}}</h1>
+      <h2 class="text-xs font-medium text-gray-400">
+        {{#if description}}
+          {{description}}
+        {{else}}
+          A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+        {{/if}}
+      </h2>
+    </div>
+  </header>
+  {{/tag}}
+
+  <div class="posts">
+    {{#foreach posts}}
+      {{> "post-card"}}
+    {{/foreach}}
+  </div>
+  {{pagination}}
+</main>
+
+{{> footer}}

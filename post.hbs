@@ -1,0 +1,97 @@
+{{!< default}}
+
+{{> header}} 
+
+<main class="">
+
+  {{#post}}
+  <div class="container mx-auto">
+    <article>
+      <header class="mb-8">
+        <h1 class="font-inter font-extrabold text-gray-800 text-4xl mb-6">{{title}}</h1>
+        <div class="mb-4 flex sm:flex-row flex-col">
+            <time datetime="{{date format="YYYY-MM-DD"}}"
+              class="text-gray-500 text-sm font-medium font-inter mr-4 mb-1">
+              On <span class="italic">{{date format="MMM D, YYYY"}}</span>
+            </time> 
+          {{#if authors}}
+          <div class="text-gray-500 text-sm font-medium font-inter mr-4 mb-1">
+            By <span class="italic text-gray-700">{{authors}}</span>
+          </div>
+          {{/if}}
+          {{#if tags}}
+          <div class="text-gray-500 text-sm font-inter font-medium mb-1">
+            Tags <span class="italic text-gray-700">{{tags}}</span>
+          </div>
+          {{/if}}
+        </div>
+      </header>
+
+      {{#if feature_image}}
+      <figure class="mb-8">
+          <img class="w-full"
+              srcset="{{img_url feature_image size="s"}} 300w,
+                      {{img_url feature_image size="m"}} 600w,
+                      {{img_url feature_image size="l"}} 1000w,
+                      {{img_url feature_image size="xl"}} 2000w"
+              sizes="(max-width: 800px) 400px,
+                  (max-width: 1170px) 1170px,
+                      2000px"
+              src="{{img_url feature_image size="xl"}}"
+              alt="{{title}}"
+          />
+      </figure>
+      {{/if}}
+
+      <section class="post-content text-gray-700 sm:mr-8">
+        {{content}}
+      </section>
+    </article>
+  </div>
+
+  <aside class="py-10 mt-12">
+    <div class="container mx-auto">
+      {{#if primary_tag}}
+        {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3" as |related_posts|}}
+      {{#if related_posts}}
+        <article class="">
+            <div class="">
+              {{#foreach related_posts}}
+              <a href="{{url}}" 
+                class="font-inter block py-5 rounded no-underline
+                       border-b border-gray-200 hover:opacity-80">
+                <h3 class="font-bold text-gray-700 text-xl">{{title}}</h3>
+                <time class="text-gray-400 font-medium font-inter italic text-xs" 
+                  datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+              </a>
+              {{/foreach}}
+                </ul>
+            </div>
+            <footer class="text-right font-medium font-inter mt-3 text-gray-400 text-xs">
+                <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty='No posts' singular='% post' plural='See all % posts'}}
+                    →</a>
+            </footer>
+        </article>
+        {{/if}}
+      {{/get}}
+      {{/if}}
+    </div>
+  </aside>
+  {{/post}}
+
+</main>
+
+{{> footer}}
+
+{{#contentFor "scripts"}}
+<script>
+  var images = document.querySelectorAll('.kg-gallery-image img');
+  images.forEach(function (image) {
+      var container = image.closest('.kg-gallery-image');
+      var width = image.attributes.width.value;
+      var height = image.attributes.height.value;
+      var ratio = width / height;
+      container.style.flex = ratio + ' 1 0%';
+    })
+</script>
+{{/contentFor}}

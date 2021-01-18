@@ -1,0 +1,10 @@
+<nav class="flex">
+  {{#foreach navigation}}
+    <a href="{{url absolute="true"}}" 
+      class="block mx-3 text-gray-400 text-xs tracking-wide 
+             font-semibold font-inter uppercase
+             hover:text-gray-500 {{#if current}}text-gray-600 font-bold active{{/if}}">
+      {{label}}
+    </a>
+  {{/foreach}}
+</nav>

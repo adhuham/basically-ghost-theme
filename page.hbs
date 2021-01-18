@@ -1,0 +1,52 @@
+{{!< default}}
+
+{{> header}} 
+
+<main class="">
+
+  {{#post}}
+  <div class="container mx-auto" style="min-height: 60vh">
+    <article>
+      <header class=" mb-10">
+        <h1 class="font-inter font-extrabold text-gray-800 text-4xl mb-6">{{title}}</h1>
+      </header>
+
+      {{#if feature_image}}
+      <figure class="mb-0">
+          <img
+              srcset="{{img_url feature_image size="s"}} 300w,
+                      {{img_url feature_image size="m"}} 600w,
+                      {{img_url feature_image size="l"}} 1000w,
+                      {{img_url feature_image size="xl"}} 2000w"
+              sizes="(max-width: 800px) 400px,
+                  (max-width: 1170px) 1170px,
+                      2000px"
+              src="{{img_url feature_image size="xl"}}"
+              alt="{{title}}"
+          />
+      </figure>
+      {{/if}}
+
+      <section class="post-content text-gray-700 sm:mr-8 mb-20">
+        {{content}}
+      </section>
+    </article>
+  </div>
+  {{/post}}
+
+</main>
+
+{{> footer}}
+
+{{#contentFor "scripts"}}
+<script>
+  var images = document.querySelectorAll('.kg-gallery-image img');
+  images.forEach(function (image) {
+      var container = image.closest('.kg-gallery-image');
+      var width = image.attributes.width.value;
+      var height = image.attributes.height.value;
+      var ratio = width / height;
+      container.style.flex = ratio + ' 1 0%';
+    })
+</script>
+{{/contentFor}}

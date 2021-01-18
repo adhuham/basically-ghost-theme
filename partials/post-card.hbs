@@ -1,0 +1,64 @@
+<article class="post-card 
+         {{post_class}} 
+         {{#unless feature_image}}no-image{{else}}
+           {{#is "home"}}
+              {{#has index="nth:6"}}post-card-large{{/has}}
+           {{/is}}
+         {{/unless}}
+         grid grid-cols-12 gap-3 sm:gap-8 mb-24">
+
+    <footer class="col-span-12 sm:col-span-3 flex flex-row sm:flex-col sm:pt-3">
+      <time datetime="{{date format="YYYY-MM-DD"}}"
+        class="text-gray-600 text-xs font-medium font-inter mr-4 sm:mb-5">
+        On <span class="italic">{{date format="MMM D, YYYY"}}</span>
+      </time> 
+      {{#primary_tag}}
+      <div class="text-gray-400 text-xs font-inter font-medium mr-4 sm:mb-2">
+        Tag <a href="{{url}}" class="italic text-gray-700 hover:opacity-80">{{name}}</a>
+      </div>
+      {{/primary_tag}}
+      {{#primary_author}}
+      <div class="text-gray-400 text-xs font-inter font-medium">
+        By <a href="{{url}}" class="italic text-gray-700 hover:opacity-80">{{name}}</a>
+      </div>
+      {{/primary_author}}
+    </footer>
+
+
+
+    <div class="col-span-12 sm:col-span-9">
+
+      <a href="{{url}}" class="block hover:opacity-70">
+        <header>
+          <h2 class="font-inter font-extrabold text-gray-800 text-3xl mb-5">{{title}}</h2>
+        </header>
+      </a>
+
+      {{#if feature_image}}
+      <a href="{{url}}" class="block hover:opacity-90">
+          <img class="w-full h-48 sm:h-60 object-cover mb-4"
+              srcset="{{img_url feature_image size="s"}} 300w,
+                      {{img_url feature_image size="m"}} 600w,
+                      {{img_url feature_image size="l"}} 1000w,
+                      {{img_url feature_image size="xl"}} 2000w"
+              sizes="(max-width: 1000px) 400px, 700px"
+              loading="lazy"
+              src="{{img_url feature_image size="m"}}"
+              alt="{{title}}"
+          />
+      </a>
+      {{/if}}
+
+      <a href="{{url}}">
+        <section class="font-inter text-sm text-gray-600">
+          {{#if feature_image}}
+            <p>{{excerpt words="100"}}</p>
+          {{else}}
+            <p>{{excerpt words="200"}}</p>
+          {{/if}}
+        </section>
+      </a>
+
+    </div>{{!--/.post-card-content--}}
+
+</article>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>{{meta_title}}</title>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="{{asset "css/tailwind.css"}}">
+  <link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900" rel="stylesheet">
+
+  {{ghost_head}}
+</head>
+
+<body class="{{body_class}} font-inter">
+
+  {{{body}}}
+
+  {{{block "scripts"}}}
+
+  {{ghost_foot}}
+</body>
+</html>

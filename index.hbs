@@ -1,0 +1,14 @@
+{{!< default}}
+
+{{> header}} 
+
+<main class="container mx-auto">
+  <div class="posts">
+    {{#foreach posts}}
+      {{> "post-card"}}
+    {{/foreach}}
+  </div>
+  {{pagination}}
+</main>
+
+{{> footer}}

@@ -1,0 +1,9 @@
+<nav class="mb-20 font-inter flex items-center justify-center">
+  {{#if prev}}
+    <a class="text-sm font-medium text-gray-800 mr-5" href="{{page_url prev}}">&laquo; Prev</a>
+  {{/if}}
+  <span class="text-xs text-gray-400 mr-5 font-medium">Page {{page}} of {{pages}}</span>
+  {{#if next}}
+    <a class="text-sm font-medium text-gray-800" href="{{page_url next}}">Next &raquo;</a>
+  {{/if}}
+</nav>

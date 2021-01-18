@@ -1,0 +1,27 @@
+<header class="mb-10 sm:mb-16">
+
+  <div class="container mx-auto">
+    <div class="flex flex-col sm:flex-row sm:pt-20 pb-10 sm:pb-20 
+                justify-between items-center">
+      <a href="{{@site.url}}" class="block mb-6 mt-6 sm:my-0">
+        <div class="text-2xl text-center sm:text-left
+                    text-gray-800 font-inter font-bold 
+                    hover:text-gray-600
+                    transition duration-500">
+            {{@site.title}}
+        </div>
+        <div class="text-xs text-gray-400 italic">
+          {{@site.description}}
+        </div>
+      </a>
+
+      <div>
+        {{#if @site.navigation}}
+            {{navigation}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+</header>
+
